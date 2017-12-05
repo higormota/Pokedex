@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:pokedex"
+             xmlns:util="clr-namespace:pokedex.Resources.util"
+             x:Class="pokedex.MainPage">
+    <ContentPage.Content>
+        <Grid
+            BackgroundColor="#f20000">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Image
+                Grid.Row="0" Grid.Column="0"
+                Source="{util:ProvideValueExtension pokedex.Resources.images.img_pokedex_top.png}"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"/>
+
+            <Image
+                Grid.Row="1" Grid.Column="0"
+                Source="{util:ProvideValueExtension pokedex.Resources.images.img_pokedex_center.png}"
+                VerticalOptions="StartAndExpand"
+                HorizontalOptions="Center"/>
+
+
+            <Grid
+               Grid.Row="2" Grid.Column="0"
+               ColumnSpacing="0"
+               HorizontalOptions="Center"
+                VerticalOptions="End">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="80" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Image 
+                    Source="{util:ProvideValueExtension pokedex.Resources.images.img_pokedex_bottom_cell1OFF.png}"
+                    Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                    Margin="0"/>
+                <StackLayout Orientation="Horizontal"
+                             Grid.Row="0" Grid.Column="1" 
+                             HorizontalOptions="Center">
+                <Image Source="{util:ProvideValueExtension pokedex.Resources.icons.icon_type_normal.png}"
+                        Margin="0"/>
+                <Image
+                    Source="{util:ProvideValueExtension pokedex.Resources.icons.icon_type_bug.png}"/>
+                </StackLayout>
+                <Frame CornerRadius="5"
+                       BackgroundColor="#00bf1a"
+                       Grid.Row="1" Grid.Column="1" 
+                       Margin="0,0,0,15"
+                       Padding="1">
+                    <Label FontSize="Small" >Lorem ipsum dolor sit amet</Label>
+                </Frame>
+                <Image 
+                    Source="{util:ProvideValueExtension pokedex.Resources.images.img_pokedex_cell3.png}"
+                    Grid.Row="0" Grid.Column="2" Grid.RowSpan="2"/>
+
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
