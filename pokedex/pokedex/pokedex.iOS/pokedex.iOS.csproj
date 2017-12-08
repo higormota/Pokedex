@@ -6,12 +6,12 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{678BA320-5CF3-4BDF-917A-E7A6FB638C69}</ProjectGuid>
+    <ProjectGuid>{9B17D6A5-8732-42E3-BE96-3D3B76D7E6D2}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>pokedex.iOS</RootNamespace>
+    <RootNamespace>Pokedex.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>pokedex.iOS</AssemblyName>
+    <AssemblyName>Pokedex.iOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -135,9 +135,9 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\pokedex\pokedex.csproj">
-      <Project>{25e584de-a4cf-47ae-8052-2307e9380ead}</Project>
-      <Name>pokedex</Name>
+    <ProjectReference Include="..\Pokedex\Pokedex.csproj">
+      <Project>{a5ff9a26-f103-47a8-9c6d-f146d90a12a8}</Project>
+      <Name>Pokedex</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

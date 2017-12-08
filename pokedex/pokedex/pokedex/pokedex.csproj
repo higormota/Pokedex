@@ -5,11 +5,11 @@
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{66147634-CF66-4948-91C3-F07416848DD2}</ProjectGuid>
+    <ProjectGuid>{53EA8417-2CE9-4D67-8A23-8F6D57AC0242}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>pokedex</RootNamespace>
-    <AssemblyName>pokedex</AssemblyName>
+    <RootNamespace>Pokedex</RootNamespace>
+    <AssemblyName>Pokedex</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
@@ -81,21 +81,19 @@
     <EmbeddedResource Include="Resources\icons\icon_type_grass.png" />
     <EmbeddedResource Include="Resources\icons\icon_type_ground.png" />
     <EmbeddedResource Include="Resources\icons\icon_type_ice.png" />
-    <EmbeddedResource Include="Resources\images\img_pokedex_bottom_cell1OFF.png" />
-    <EmbeddedResource Include="Resources\images\img_pokedex_cell3.png" />
     <EmbeddedResource Include="Resources\icons\icon_type_normal.png" />
     <EmbeddedResource Include="Resources\icons\icon_type_poison.png" />
     <EmbeddedResource Include="Resources\icons\icon_type_psychic.png" />
     <EmbeddedResource Include="Resources\icons\icon_type_rock.png" />
     <EmbeddedResource Include="Resources\icons\icon_type_steel.png" />
     <EmbeddedResource Include="Resources\icons\icon_type_water.png" />
+    <EmbeddedResource Include="Resources\images\img_pokedex_bottom.png" />
+    <EmbeddedResource Include="Resources\images\img_pokedex_bottom_cell1OFF.png" />
     <EmbeddedResource Include="Resources\images\img_pokedex_bottom_cell1ON.png" />
     <EmbeddedResource Include="Resources\images\img_pokedex_bottom_cell2.png" />
-    <EmbeddedResource Include="Resources\images\img_pokedex_bottom.png" />
-    <EmbeddedResource Include="Resources\images\img_pokedex_top.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <EmbeddedResource Include="Resources\images\img_pokedex_cell3.png" />
     <EmbeddedResource Include="Resources\images\img_pokedex_center.png" />
+    <EmbeddedResource Include="Resources\images\img_pokedex_top.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.4.0.280\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />

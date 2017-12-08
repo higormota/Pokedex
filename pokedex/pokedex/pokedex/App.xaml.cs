@@ -5,7 +5,7 @@ using System.Text;
 
 using Xamarin.Forms;
 
-namespace pokedex
+namespace Pokedex
 {
     public partial class App : Application
     {
@@ -13,8 +13,7 @@ namespace pokedex
         {
             InitializeComponent();
 
-            MainPage = new pokedex.MainPage();
-
+            MainPage = new Pokedex.MainPage();
         }
 
         protected override void OnStart()

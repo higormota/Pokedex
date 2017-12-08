@@ -9,9 +9,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Android.Runtime.ResourceDesignerAttribute("pokedex.Droid.Resource", IsApplication=true)]
+[assembly: global::Android.Runtime.ResourceDesignerAttribute("Pokedex.Droid.Resource", IsApplication=true)]
 
-namespace pokedex.Droid
+namespace Pokedex.Droid
 {
 	
 	
@@ -26,7 +26,7 @@ namespace pokedex.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::pokedex.Droid.Resource.Attribute.actionBarSize;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::Pokedex.Droid.Resource.Attribute.actionBarSize;
 		}
 		
 		public partial class Animation
@@ -2667,7 +2667,7 @@ namespace pokedex.Droid
 			public const int ic_vol_type_tv_light = 2130837739;
 			
 			// aapt resource value: 0x7f0200ec
-			public const int icon_logo = 2130837740;
+			public const int icon = 2130837740;
 			
 			// aapt resource value: 0x7f0200ed
 			public const int mr_button_connected_dark = 2130837741;

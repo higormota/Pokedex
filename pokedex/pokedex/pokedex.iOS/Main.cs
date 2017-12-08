@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace pokedex.iOS
+namespace Pokedex.iOS
 {
     public class Application
     {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace pokedex.Resources.util
+namespace Pokedex.Resources.util
 {
     /*  -------------------------------------------------------------------
      * |Interface usada para permitir que propriedades de algum objeto XAML |
