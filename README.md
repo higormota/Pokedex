@@ -1,3 +1,2 @@
 # Pokedex
 
-Adicionar pokemons
