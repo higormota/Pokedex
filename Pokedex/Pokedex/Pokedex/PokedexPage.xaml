@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:pokedex"
+             xmlns:util="clr-namespace:Pokedex.Resources.util"
+             x:Class="Pokedex.PokedexPage">
+    <ContentPage.Content>
+        <Grid
+            x:Name="gridMain"
+            BackgroundColor="#f20000">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Image
+                Grid.Row="0" Grid.Column="0"
+                Aspect="Fill"
+                Source="{util:ProvideValueExtension Pokedex.Resources.layout.img_pokedex_top.png}"
+                VerticalOptions="Center"
+                HorizontalOptions="CenterAndExpand"/>
+
+            <Image
+                x:Name="imageVisor"
+                Grid.Row="1" Grid.Column="0"
+                Aspect="Fill"
+                Source="{util:ProvideValueExtension Pokedex.Resources.layout.img_pokedex_center.png}"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand"/>
+
+            <Grid
+               Grid.Row="2" Grid.Column="0"
+               ColumnSpacing="0"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="EndAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="8*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+                    <Image x:Name="imageOwned" Source="{util:ProvideValueExtension Pokedex.Resources.layout.img_pokedex_bottom_cell1OFF.png}"/>
+                    <Label Text="Owned" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Micro"></Label>
+                </Grid>
+                <StackLayout x:Name="stackTypes"
+                             Orientation="Horizontal"
+                             Grid.Row="0" Grid.Column="1" 
+                             HorizontalOptions="Center">
+                </StackLayout>
+                <Frame CornerRadius="5"
+                       BackgroundColor="#00bf1a"
+                       Grid.Row="1" Grid.Column="1" 
+                       Margin="0,0,0,15"
+                       Padding="1">
+                    <Label x:Name="labelDescription" FontSize="Small" ></Label>
+                </Frame>
+                <Image Source="{util:ProvideValueExtension Pokedex.Resources.layout.img_pokedex_cell3.png}" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" />
+
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

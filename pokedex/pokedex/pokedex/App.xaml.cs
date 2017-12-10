@@ -13,7 +13,7 @@ namespace Pokedex
         {
             InitializeComponent();
 
-            MainPage = new Pokedex.MainPage();
+            MainPage = new Pokedex.PokedexPage();
         }
 
         protected override void OnStart()
