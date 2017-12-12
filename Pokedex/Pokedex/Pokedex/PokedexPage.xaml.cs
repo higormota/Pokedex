@@ -9,6 +9,7 @@ namespace Pokedex
 {
     public partial class PokedexPage : ContentPage
     {
+ 
         public PokedexPage()
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace Pokedex
 
         private void insertPokemonImage()
         {
+            
             Image pokemonIcon = new Image();
             pokemonIcon.HeightRequest = 200;
             pokemonIcon.WidthRequest = 200;
@@ -32,7 +34,7 @@ namespace Pokedex
             pokemonIcon.Source = ImageSource.FromResource("Pokedex.Resources.pokemon.pokemon(1).ico");
             pokemonIcon.VerticalOptions = LayoutOptions.CenterAndExpand;
             pokemonIcon.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            gridMain.Children.Add(pokemonIcon, 0, 1);
+            gridMain.Children.Add(pokemonIcon,0,1);
         }
 
         private void insertPokemonType()
@@ -49,7 +51,7 @@ namespace Pokedex
 
         private void insertPokemonDescription()
         {
-            labelDescription.Text = "A strange seed was planted on its back at birth.The plant sprouts and grows with this POKEMON.";
+            labelDescription.Text = "A strange seed was planted on its back at birth.The plant sprouts and grows with this POKEMON.A strange seed was planted on its back at birth.The plant sprouts and grows with this POKEMON.";
         }
 
         private void insertPokemonOwned()
@@ -62,5 +64,31 @@ namespace Pokedex
                 imageOwned.Source = ImageSource.FromResource("Pokedex.Resources.layout.img_pokedex_bottom_cell1OFF.png");
             }
         }
+
+        async void OnTapGestureRecognizerTapped(object sender, EventArgs args) {
+            var userPage = new UserPage();
+            await Navigation.PushModalAsync(userPage);
+
+        }
+
+        void OnChangePokemon(object sender, EventArgs args) {
+            var imageSender = (Image)sender;
+
+            if (imageSender == next)
+            {
+                insertPokemon();
+            }
+            else
+            {
+                insertPokemon();
+            }
+
+        }
+
+
+
+
+
+
     }
 }

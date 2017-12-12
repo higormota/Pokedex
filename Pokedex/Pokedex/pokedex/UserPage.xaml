@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:util="clr-namespace:Pokedex.Resources.util"
+             x:Class="Pokedex.UserPage"
+             BackgroundColor="#f20000">
+    <ContentPage.Content>
+        <Grid
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Image Source="{util:ProvideValueExtension Pokedex.Resources.layout.icon_female.png}"
+                   Grid.Row="0" Grid.Column="0"
+                   VerticalOptions="Center"
+                HorizontalOptions="CenterAndExpand" />
+            <Grid 
+               Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Text="Bulbassauro" TextColor="White"  x:Name="lblName" />
+                <Label Grid.Row="1" Text="Female" TextColor="White" x:Name="lblGender" />
+                <Label Grid.Row="2" Text="0" TextColor="White" x:Name="lblNumberPokemons" />
+            </Grid>
+            <Button
+                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                HorizontalOptions="Center"
+                x:Name="dismissButton" 
+                Text="Ok" 
+                Clicked="OnDismissButtonClicked"/>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

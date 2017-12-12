@@ -16,20 +16,29 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
+  
             <Image
                 Grid.Row="0" Grid.Column="0"
                 Aspect="Fill"
                 Source="{util:ProvideValueExtension Pokedex.Resources.layout.img_pokedex_top.png}"
                 VerticalOptions="Center"
-                HorizontalOptions="CenterAndExpand"/>
+                HorizontalOptions="CenterAndExpand">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="OnTapGestureRecognizerTapped"
+                            NumberOfTapsRequired="1" />
+                </Image.GestureRecognizers>
+            </Image>
+
 
             <Image
-                x:Name="imageVisor"
-                Grid.Row="1" Grid.Column="0"
-                Aspect="Fill"
-                Source="{util:ProvideValueExtension Pokedex.Resources.layout.img_pokedex_center.png}"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="CenterAndExpand"/>
+               x:Name="imageVisor"
+               Grid.Row="1" 
+               Aspect="Fill"
+               Source="{util:ProvideValueExtension Pokedex.Resources.layout.img_pokedex_center.png}"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="CenterAndExpand">
+            </Image>
 
             <Grid
                Grid.Row="2" Grid.Column="0"
@@ -45,7 +54,14 @@
                     <ColumnDefinition Width="3*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+                <Image 
+                    Source="{util:ProvideValueExtension Pokedex.Resources.layout.img_prev.png}" Grid.Row="0" Grid.Column="0" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnChangePokemon"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Grid Grid.Row="1" Grid.Column="0">
                     <Image x:Name="imageOwned" Source="{util:ProvideValueExtension Pokedex.Resources.layout.img_pokedex_bottom_cell1OFF.png}"/>
                     <Label Text="Owned" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Micro"></Label>
                 </Grid>
@@ -57,12 +73,20 @@
                 <Frame CornerRadius="5"
                        BackgroundColor="#00bf1a"
                        Grid.Row="1" Grid.Column="1" 
-                       Margin="0,0,0,15"
+                       Margin="0,0,0,5"
                        Padding="1">
-                    <Label x:Name="labelDescription" FontSize="Small" ></Label>
+                    <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand">
+                        <Label x:Name="labelDescription" FontSize="Small" TextColor="White" ></Label>
+                    </ScrollView>
                 </Frame>
-                <Image Source="{util:ProvideValueExtension Pokedex.Resources.layout.img_pokedex_cell3.png}" Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" />
-
+                <Image x:Name="next"
+                    Source="{util:ProvideValueExtension Pokedex.Resources.layout.img_next.png}" Grid.Row="0" Grid.Column="2" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnChangePokemon"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Source="{util:ProvideValueExtension Pokedex.Resources.layout.img_pokedex_cell3.png}" Grid.Row="1" Grid.Column="2" />
             </Grid>
 
         </Grid>
