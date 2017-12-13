@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 using System.Reflection;
+using Pokedex.Database.Models;
+using System;
 
 namespace Pokedex.Database.CSV
 {
@@ -13,14 +14,35 @@ namespace Pokedex.Database.CSV
     {
         public static void CreateDB()
         {
-            foreach (String line in CreateDBFromCSV.getText("Pokedex.Database.CSV.pokemon.csv"))
+            List<Pokemon> pokemons = new List<Pokemon>();
+            List<Habitat> habitats = new List<Habitat>();
+            List<Models.Type> types = new List<Models.Type>();
+            List<PokemonType> pokemonTypes = new List<PokemonType>();
+
+            foreach (String line in CreateDBFromCSV.getText("Pokedex.Database.CSV.pokemons.csv"))
             {
                 string temp = line.Replace("\r\n", "").Replace("\r", "").Replace("\n", "");
-                Pokemon pokemon = Pokemon.FromCsv(temp);
-                int i = 0;
+                pokemons.Add(Pokemon.FromCsv(temp));
             }
 
-            int j = 0;
+            foreach (String line in CreateDBFromCSV.getText("Pokedex.Database.CSV.habitats.csv"))
+            {
+                string temp = line.Replace("\r\n", "").Replace("\r", "").Replace("\n", "");
+                habitats.Add(Habitat.FromCsv(temp));
+            }
+
+            foreach (String line in CreateDBFromCSV.getText("Pokedex.Database.CSV.types.csv"))
+            {
+                string temp = line.Replace("\r\n", "").Replace("\r", "").Replace("\n", "");
+                types.Add(Models.Type.FromCsv(temp));
+            }
+
+            foreach (String line in CreateDBFromCSV.getText("Pokedex.Database.CSV.pokemon_types.csv"))
+            {
+                string temp = line.Replace("\r\n", "").Replace("\r", "").Replace("\n", "");
+                pokemonTypes.Add(PokemonType.FromCsv(temp));
+            }
+            int i = 0;
         }
 
         public static string[] getText(string file)

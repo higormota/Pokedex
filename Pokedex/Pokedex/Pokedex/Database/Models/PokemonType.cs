@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pokedex.Database
+namespace Pokedex.Database.Models
 {
     public class PokemonType
     {

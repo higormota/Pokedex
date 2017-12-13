@@ -1,5 +1,6 @@
 ﻿using Pokedex.Database;
 using Pokedex.Database.CSV;
+using Pokedex.Database.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,12 @@ namespace Pokedex
             InitializeComponent();
             insertPokemon();
 
-            //CreateDBFromCSV.CreateDB();
+            /*CreateDBFromCSV.CreateDB();
             List<Pokemon> pokemons = App.DAUtil.GetAllPokemons();
             List<Habitat> habitats = App.DAUtil.GetAllHabitats();
-            List<Database.Type> types = App.DAUtil.GetAllTypes();
+            List<Database.Models.Type> types = App.DAUtil.GetAllTypes();
             List<PokemonType> pokemonTypes = App.DAUtil.GetAllPokemonTypes();
-            int i = 0;
+            int i = 0;*/
         }
 
         private void insertPokemon()
