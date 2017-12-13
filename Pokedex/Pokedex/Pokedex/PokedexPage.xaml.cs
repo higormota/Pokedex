@@ -15,7 +15,7 @@ namespace Pokedex
             InitializeComponent();
             insertPokemon();
 
-            CreateDBFromCSV.CreateDB();
+            //CreateDBFromCSV.CreateDB();
             List<Pokemon> pokemons = App.DAUtil.GetAllPokemons();
             List<Habitat> habitats = App.DAUtil.GetAllHabitats();
             List<Database.Type> types = App.DAUtil.GetAllTypes();
