@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Pokedex.Database;
+using Pokedex.Database.CSV;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Pokedex
@@ -14,6 +14,13 @@ namespace Pokedex
         {
             InitializeComponent();
             insertPokemon();
+
+            CreateDBFromCSV.CreateDB();
+            List<Pokemon> pokemons = App.DAUtil.GetAllPokemons();
+            List<Habitat> habitats = App.DAUtil.GetAllHabitats();
+            List<Database.Type> types = App.DAUtil.GetAllTypes();
+            List<PokemonType> pokemonTypes = App.DAUtil.GetAllPokemonTypes();
+            int i = 0;
         }
 
         private void insertPokemon()

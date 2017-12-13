@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pokedex.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,23 @@ namespace Pokedex
 {
     public partial class App : Application
     {
+        static DataAccess dbUtils;
         public App()
         {
             InitializeComponent();
 
             MainPage = new Pokedex.PokedexPage();
+        }
+        public static DataAccess DAUtil
+        {
+            get
+            {
+                if (dbUtils == null)
+                {
+                    dbUtils = new DataAccess();
+                }
+                return dbUtils;
+            }
         }
 
         protected override void OnStart()
