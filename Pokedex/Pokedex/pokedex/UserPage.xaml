@@ -6,8 +6,8 @@
              BackgroundColor="#f20000">
     <ContentPage.Content>
         <Grid
-            HorizontalOptions="CenterAndExpand"
-            VerticalOptions="CenterAndExpand">
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*" />
                 <RowDefinition Height="1*" />

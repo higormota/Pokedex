@@ -28,8 +28,8 @@ namespace Pokedex
         private void showPokemon()
         {
             showPokemonImage();
-            showPokemonTypes();
-            showPokemonDescription();
+            string types = showPokemonTypes();
+            showPokemonDescription(types);
             showPokemonOwned();
         }
 
@@ -38,20 +38,23 @@ namespace Pokedex
             imagePokemon.Source = ImageSource.FromResource("Pokedex.Resources.pokemon.pokemon(" + currentPokemon.Id.ToString() + ").ico");
         }
 
-        private void showPokemonTypes()
+        private string showPokemonTypes()
         {
             stackTypes.Children.Clear();
             List<Database.Models.Type> typeList = App.DAUtil.GetPokemonTypes(currentPokemon.Id);
+            string types = "";
             foreach(Database.Models.Type type in typeList)
             {
                 Image pokemonTypeImage = new Image();
                 pokemonTypeImage.Source = ImageSource.FromResource("Pokedex.Resources.types." + type.Name + ".png");
                 pokemonTypeImage.Margin = 0;
                 stackTypes.Children.Add(pokemonTypeImage);
+                types += type.Name + " ";
             }
+            return types;
         }
 
-        private void showPokemonDescription()
+        private void showPokemonDescription(String types)
         {
             string pokemonNumber = currentPokemon.Id.ToString();
             while(pokemonNumber.Length < 3)
@@ -59,8 +62,8 @@ namespace Pokedex
                 pokemonNumber = "0" + pokemonNumber;
             }
 
-            labelDescription.Text = "#" + pokemonNumber + " - ";
-            labelDescription.Text += currentPokemon.Description;
+            labelDescription.Text = "#" + pokemonNumber + " - " + types;
+            labelDescription.Text += "\n" + currentPokemon.Description;
             labelDescription.Text += "\nHeight: " + currentPokemon.Height;
             labelDescription.Text += "\nWeight: " + currentPokemon.Weight;
             labelDescription.Text += "\nHabitat: " + App.DAUtil.GetHabitatById(currentPokemon.HabitatId).Name;
@@ -80,12 +83,10 @@ namespace Pokedex
         async void OnTapGestureRecognizerTapped(object sender, EventArgs args) {
             var userPage = new UserPage();
             await Navigation.PushModalAsync(userPage);
-
         }
 
         void OnChangePokemon(object sender, EventArgs args)
         {
-          
             var imageSender = (Image)sender;
 
             if (imageSender == next)
