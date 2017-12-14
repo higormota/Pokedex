@@ -20,6 +20,37 @@ namespace Pokedex.Database
             dbConn.CreateTable<Type>();
             dbConn.CreateTable<PokemonType>();
         }
+        public Pokemon GetPokemonById(long Id)
+        {
+            return dbConn.Find<Pokemon>(Id.ToString());
+        }
+        public Habitat GetHabitatById(long Id)
+        {
+            return dbConn.Find<Habitat>(Id.ToString());
+        }
+        public Type GetTypeById(long Id)
+        {
+            return dbConn.Find<Type>(Id.ToString());
+        }
+        public List<Type> GetPokemonTypes(long pokemonId)
+        {
+            List<PokemonType> pokemonTypeList = dbConn.Query<PokemonType>("Select * From [PokemonType] Where PokemonId = " + pokemonId.ToString());
+            if (pokemonTypeList.Count == 0)
+            {
+                return new List<Type>();
+            }
+            string where = "";
+            foreach(PokemonType pokemonType in pokemonTypeList)
+            {
+                where += pokemonType.TypeId + ",";
+            }
+            if (where.Length > 1)
+            {
+                where = where.Remove(where.Length - 1);
+            }
+
+            return dbConn.Query<Type>("Select * From [Type] Where Id IN (" + where + ")");
+        }
         public List<Pokemon> GetAllPokemons()
         {
             return dbConn.Query<Pokemon>("Select * From [Pokemon]");
@@ -36,19 +67,23 @@ namespace Pokedex.Database
         {
             return dbConn.Query<PokemonType>("Select * From [PokemonType]");
         }
-        public int SavePokemons(List<Pokemon> pokemons)
+        public int UpdatePokemon(Pokemon pokemon)
+        {
+            return dbConn.Update(pokemon);
+        }
+        public int InsertPokemons(List<Pokemon> pokemons)
         {
             return dbConn.InsertAll(pokemons);
         }
-        public int SaveHabitats(List<Habitat> habitats)
+        public int InsertHabitats(List<Habitat> habitats)
         {
             return dbConn.InsertAll(habitats);
         }
-        public int SaveTypes(List<Type> types)
+        public int InsertTypes(List<Type> types)
         {
             return dbConn.InsertAll(types);
         }
-        public int SavePokemonTypes(List<PokemonType> pokemonTypes)
+        public int InsertPokemonTypes(List<PokemonType> pokemonTypes)
         {
             return dbConn.InsertAll(pokemonTypes);
         }

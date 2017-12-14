@@ -30,12 +30,21 @@
                 </Image.GestureRecognizers>
             </Image>
 
-
             <Image
                x:Name="imageVisor"
                Grid.Row="1" 
                Aspect="Fill"
                Source="{util:ProvideValueExtension Pokedex.Resources.layout.img_pokedex_center.png}"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="CenterAndExpand">
+            </Image>
+
+            <Image
+               x:Name="imagePokemon"
+               Grid.Row="1" 
+               Aspect="AspectFill"
+               HeightRequest="200"
+               WidthRequest="200"
                VerticalOptions="CenterAndExpand"
                HorizontalOptions="CenterAndExpand">
             </Image>
@@ -64,6 +73,10 @@
                 <Grid Grid.Row="1" Grid.Column="0">
                     <Image x:Name="imageOwned" Source="{util:ProvideValueExtension Pokedex.Resources.layout.img_pokedex_bottom_cell1OFF.png}"/>
                     <Label Text="Owned" TextColor="Black" HorizontalTextAlignment="Center" FontSize="Micro"></Label>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnOwnedPokemon"
+                            NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
                 </Grid>
                 <StackLayout x:Name="stackTypes"
                              Orientation="Horizontal"

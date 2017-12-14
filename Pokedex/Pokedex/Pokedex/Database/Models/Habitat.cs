@@ -16,6 +16,7 @@ namespace Pokedex.Database.Models
         [NotNull]
         public string Name
         { get; set; }
+        public Habitat() { }
         public Habitat(long id, string name)
         {
             Id = id;

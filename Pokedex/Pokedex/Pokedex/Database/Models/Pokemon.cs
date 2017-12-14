@@ -29,8 +29,10 @@ namespace Pokedex.Database.Models
         { get; set; }
         public string Description
         { get; set; }
+        public int Owned
+        { get; set; }
         public Pokemon() { }
-        public Pokemon(long id, string name, int height, int weight, int evolvesFromSpeciesId, int evolutionChanId, int habitatId, int hasGenderDifferences, string description)
+        public Pokemon(long id, string name, int height, int weight, int evolvesFromSpeciesId, int evolutionChanId, int habitatId, int hasGenderDifferences, string description, int owned)
         {
             Id = id;
             Name = name;
@@ -41,11 +43,12 @@ namespace Pokedex.Database.Models
             HabitatId = habitatId;
             HasGenderDifferences = hasGenderDifferences;
             Description = description;
+            Owned = owned;
         }
         public static Pokemon FromCsv(string csvLine)
         {
             string[] values = csvLine.Split(';');
-            return new Pokemon(long.Parse(values[0]), values[1], int.Parse(values[2]), int.Parse(values[3]), int.Parse(values[4]), int.Parse(values[5]), int.Parse(values[6]), int.Parse(values[7]), values[8]);
+            return new Pokemon(long.Parse(values[0]), values[1], int.Parse(values[2]), int.Parse(values[3]), int.Parse(values[4]), int.Parse(values[5]), int.Parse(values[6]), int.Parse(values[7]), values[8], int.Parse(values[9]));
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Pokedex.Database.Models
         [NotNull]
         public string Name
         { get; set; }
+        public Type() { }
         public Type(long id, string name)
         {
             Id = id;

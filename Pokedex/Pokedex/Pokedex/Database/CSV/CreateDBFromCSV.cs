@@ -42,7 +42,11 @@ namespace Pokedex.Database.CSV
                 string temp = line.Replace("\r\n", "").Replace("\r", "").Replace("\n", "");
                 pokemonTypes.Add(PokemonType.FromCsv(temp));
             }
-            int i = 0;
+
+            App.DAUtil.InsertPokemons(pokemons);
+            App.DAUtil.InsertHabitats(habitats);
+            App.DAUtil.InsertTypes(types);
+            App.DAUtil.InsertPokemonTypes(pokemonTypes);
         }
 
         public static string[] getText(string file)

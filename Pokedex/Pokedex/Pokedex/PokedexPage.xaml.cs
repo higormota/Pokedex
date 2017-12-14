@@ -10,61 +10,65 @@ namespace Pokedex
 {
     public partial class PokedexPage : ContentPage
     {
+        Pokemon currentPokemon;
  
         public PokedexPage()
         {
             InitializeComponent();
-            insertPokemon();
 
-            /*CreateDBFromCSV.CreateDB();
-            List<Pokemon> pokemons = App.DAUtil.GetAllPokemons();
-            List<Habitat> habitats = App.DAUtil.GetAllHabitats();
-            List<Database.Models.Type> types = App.DAUtil.GetAllTypes();
-            List<PokemonType> pokemonTypes = App.DAUtil.GetAllPokemonTypes();
-            int i = 0;*/
-        }
-
-        private void insertPokemon()
-        {
-            insertPokemonImage();
-            insertPokemonType();
-            insertPokemonDescription();
-            insertPokemonOwned();
-        }
-
-        private void insertPokemonImage()
-        {
-            
-            Image pokemonIcon = new Image();
-            pokemonIcon.HeightRequest = 200;
-            pokemonIcon.WidthRequest = 200;
-            pokemonIcon.Aspect = Aspect.AspectFill;
-            pokemonIcon.Source = ImageSource.FromResource("Pokedex.Resources.pokemon.pokemon(1).ico");
-            pokemonIcon.VerticalOptions = LayoutOptions.CenterAndExpand;
-            pokemonIcon.HorizontalOptions = LayoutOptions.CenterAndExpand;
-            gridMain.Children.Add(pokemonIcon,0,1);
-        }
-
-        private void insertPokemonType()
-        {
-            String[] types = {"poison", "grass"};
-            foreach(String type in types)
+            if (App.DAUtil.GetAllPokemons().Count == 0)
             {
-                Image pokemonType = new Image();
-                pokemonType.Source = ImageSource.FromResource("Pokedex.Resources.types." + type + ".png");
-                pokemonType.Margin = 0;
-                stackTypes.Children.Add(pokemonType);
+                CreateDBFromCSV.CreateDB();
+            }
+
+            currentPokemon = App.DAUtil.GetPokemonById(1);
+            showPokemon();
+        }
+
+        private void showPokemon()
+        {
+            showPokemonImage();
+            showPokemonTypes();
+            showPokemonDescription();
+            showPokemonOwned();
+        }
+
+        private void showPokemonImage()
+        {
+            imagePokemon.Source = ImageSource.FromResource("Pokedex.Resources.pokemon.pokemon(" + currentPokemon.Id.ToString() + ").ico");
+        }
+
+        private void showPokemonTypes()
+        {
+            stackTypes.Children.Clear();
+            List<Database.Models.Type> typeList = App.DAUtil.GetPokemonTypes(currentPokemon.Id);
+            foreach(Database.Models.Type type in typeList)
+            {
+                Image pokemonTypeImage = new Image();
+                pokemonTypeImage.Source = ImageSource.FromResource("Pokedex.Resources.types." + type.Name + ".png");
+                pokemonTypeImage.Margin = 0;
+                stackTypes.Children.Add(pokemonTypeImage);
             }
         }
 
-        private void insertPokemonDescription()
+        private void showPokemonDescription()
         {
-            labelDescription.Text = "A strange seed was planted on its back at birth.The plant sprouts and grows with this POKEMON.A strange seed was planted on its back at birth.The plant sprouts and grows with this POKEMON.";
+            string pokemonNumber = currentPokemon.Id.ToString();
+            while(pokemonNumber.Length < 3)
+            {
+                pokemonNumber = "0" + pokemonNumber;
+            }
+
+            labelDescription.Text = "#" + pokemonNumber + " - ";
+            labelDescription.Text += currentPokemon.Description;
+            labelDescription.Text += "\nHeight: " + currentPokemon.Height;
+            labelDescription.Text += "\nWeight: " + currentPokemon.Weight;
+            labelDescription.Text += "\nHabitat: " + App.DAUtil.GetHabitatById(currentPokemon.HabitatId).Name;
         }
 
-        private void insertPokemonOwned()
+        private void showPokemonOwned()
         {
-            if(true)
+            if(currentPokemon.Owned == 1)
             {
                 imageOwned.Source = ImageSource.FromResource("Pokedex.Resources.layout.img_pokedex_bottom_cell1ON.png");
             } else
@@ -79,24 +83,50 @@ namespace Pokedex
 
         }
 
-        void OnChangePokemon(object sender, EventArgs args) {
+        void OnChangePokemon(object sender, EventArgs args)
+        {
             var imageSender = (Image)sender;
 
             if (imageSender == next)
             {
-                insertPokemon();
+                if (currentPokemon.Id == 151)
+                {
+                    currentPokemon = App.DAUtil.GetPokemonById(1);
+                }
+                else
+                {
+                    currentPokemon = App.DAUtil.GetPokemonById(currentPokemon.Id + 1);
+                }
+                showPokemon();
             }
             else
             {
-                insertPokemon();
+                if (currentPokemon.Id == 1)
+                {
+                    currentPokemon = App.DAUtil.GetPokemonById(151);
+                }
+                else
+                {
+                    currentPokemon = App.DAUtil.GetPokemonById(currentPokemon.Id - 1);
+                }
+                showPokemon();
             }
 
         }
 
+        void OnOwnedPokemon(object sender, EventArgs args)
+        {
+            if (currentPokemon.Owned == 1)
+            {
+                currentPokemon.Owned = 0;
+            } else
+            {
+                currentPokemon.Owned = 1;
+            }
 
+            App.DAUtil.UpdatePokemon(currentPokemon);
 
-
-
-
+            showPokemonOwned();
+        }
     }
 }
