@@ -6,30 +6,38 @@
              BackgroundColor="#f20000">
     <ContentPage.Content>
         <Grid
-            HorizontalOptions="Center"
-            VerticalOptions="Center">
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand">
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*" />
+                <RowDefinition Height="2*" />
                 <RowDefinition Height="1*" />
+                <RowDefinition Height="3*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            <Image Source="{util:ProvideValueExtension Pokedex.Resources.layout.icon_female.png}"
-                   Grid.Row="0" Grid.Column="0"
-                   VerticalOptions="Center"
+            <Image x:Name="imgUser"
+                Source=""
+                Grid.Row="0" Grid.Column="0"
+                VerticalOptions="Center"
                 HorizontalOptions="CenterAndExpand" />
             <Grid 
+               x:Name="grdUserData" 
                Grid.Row="0" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Text="Bulbassauro" TextColor="White"  x:Name="lblName" />
-                <Label Grid.Row="1" Text="Female" TextColor="White" x:Name="lblGender" />
-                <Label Grid.Row="2" Text="0" TextColor="White" x:Name="lblNumberPokemons" />
+                <Label Grid.Row="0" Text="0" TextColor="White"  x:Name="lblName" IsVisible="False"/>
+                <Label Grid.Row="1" Text="0" TextColor="White" x:Name="lblGender" IsVisible="False" />
+                <Label Grid.Row="2" Text="Catch: " TextColor="White" x:Name="lblNumberPokemons" IsVisible="False">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnTapNumberPokemons"
+                                              NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
             </Grid>
             <Button
                 Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
@@ -37,6 +45,27 @@
                 x:Name="dismissButton" 
                 Text="Ok" 
                 Clicked="OnDismissButtonClicked"/>
+            <ListView  x:Name="lvPokemon"
+                        Grid.Row="2" 
+                       >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout 
+                                        Orientation="Vertical">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Id}"
+                                           TextColor="White" />
+                                    <Label Text="{Binding Name}"
+                                           HorizontalOptions="EndAndExpand"
+                                           TextColor="White" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
 
 
         </Grid>

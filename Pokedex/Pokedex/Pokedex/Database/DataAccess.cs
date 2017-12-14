@@ -19,7 +19,14 @@ namespace Pokedex.Database
             dbConn.CreateTable<Habitat>();
             dbConn.CreateTable<Type>();
             dbConn.CreateTable<PokemonType>();
+            dbConn.CreateTable<User>();
         }
+
+        public void createTableUser()
+        {
+            dbConn.CreateTable<User>();
+        }
+
         public Pokemon GetPokemonById(long Id)
         {
             return dbConn.Find<Pokemon>(Id.ToString());
@@ -32,6 +39,16 @@ namespace Pokedex.Database
         {
             return dbConn.Find<Type>(Id.ToString());
         }
+        public User GetUserById(long? Id)
+        {
+            User userDefault = dbConn.Query<User>("Select * From [User]").FirstOrDefault();
+            if (Id == 0 && userDefault != null)
+            {
+                Id = userDefault.Id;
+            }
+            return dbConn.Find<User>(Id.ToString());
+        }
+        
         public List<Type> GetPokemonTypes(long pokemonId)
         {
             List<PokemonType> pokemonTypeList = dbConn.Query<PokemonType>("Select * From [PokemonType] Where PokemonId = " + pokemonId.ToString());
@@ -67,6 +84,12 @@ namespace Pokedex.Database
         {
             return dbConn.Query<PokemonType>("Select * From [PokemonType]");
         }
+
+        public List<Pokemon> GetAllOwnedPokemon()
+        {
+            return dbConn.Query<Pokemon>("Select * From [Pokemon] Where Owned = 1");
+        }
+
         public int UpdatePokemon(Pokemon pokemon)
         {
             return dbConn.Update(pokemon);
@@ -86,6 +109,10 @@ namespace Pokedex.Database
         public int InsertPokemonTypes(List<PokemonType> pokemonTypes)
         {
             return dbConn.InsertAll(pokemonTypes);
+        }
+
+        public int InsertUser(User user) {
+            return dbConn.Insert(user);
         }
     }
 }

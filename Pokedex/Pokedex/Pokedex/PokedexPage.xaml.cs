@@ -85,6 +85,7 @@ namespace Pokedex
 
         void OnChangePokemon(object sender, EventArgs args)
         {
+          
             var imageSender = (Image)sender;
 
             if (imageSender == next)
@@ -109,6 +110,7 @@ namespace Pokedex
                 {
                     currentPokemon = App.DAUtil.GetPokemonById(currentPokemon.Id - 1);
                 }
+ 
                 showPokemon();
             }
 

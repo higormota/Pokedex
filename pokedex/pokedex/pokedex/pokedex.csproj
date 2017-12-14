@@ -45,6 +45,7 @@
     <Compile Include="Database\Models\Pokemon.cs" />
     <Compile Include="Database\Models\PokemonType.cs" />
     <Compile Include="Database\Models\Type.cs" />
+    <Compile Include="Database\Models\User.cs" />
     <Compile Include="PokedexPage.xaml.cs">
       <DependentUpon>PokedexPage.xaml</DependentUpon>
     </Compile>
