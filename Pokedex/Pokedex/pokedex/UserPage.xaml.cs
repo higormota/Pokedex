@@ -20,6 +20,7 @@ namespace Pokedex
         {
             InitializeComponent();
             loadUser();
+            LoadOwnedPokemon();
         }
 
         void loadUser() {
@@ -29,13 +30,20 @@ namespace Pokedex
            if (currentUser.Name == null)
            {
                 txtName.Placeholder = "Enter your name... ";
-                txtName.SetValue(Grid.RowProperty, 0);
+                txtName.HorizontalOptions = LayoutOptions.Start;
+                txtName.SetValue(Grid.RowProperty, 1);
+                txtName.FontSize = 12;
                 txtGender.Placeholder = "Enter your gender...";
-                txtGender.SetValue(Grid.RowProperty, 1);
+                txtGender.HorizontalOptions = LayoutOptions.Start;
+                txtGender.FontSize = 12;
+                txtGender.SetValue(Grid.RowProperty, 2);
+    
+
 
                 grdUserData.Children.Add(txtName);
                 grdUserData.Children.Add(txtGender);
-                dismissButton.Text = "Create";
+                createButton.IsVisible = true;
+                createButton.Text = "Create";
           }
           else
           {
@@ -50,11 +58,11 @@ namespace Pokedex
         } 
 
 
-        async void OnDismissButtonClicked(object sender, EventArgs args)
+        async void OnCreateUserClicked(object sender, EventArgs args)
         {
            if (lblName.IsVisible)
            {
-                await Navigation.PopModalAsync();
+                createButton.IsVisible = false;
             }
             else
             {
@@ -64,14 +72,38 @@ namespace Pokedex
                 currentUser = App.DAUtil.GetUserById(0);
                 txtName.IsVisible = false;
                 txtGender.IsVisible = false;
+                createButton.IsVisible = false;
                 loadUser();
             }
         }
 
-        void OnTapNumberPokemons(object sender, EventArgs args) {
+        async void OnTapBack(object sender, EventArgs args)
+        {
+                await Navigation.PopModalAsync();
+         
+        }
+
+        void LoadOwnedPokemon() {
             List<Pokemon> listPokemon = App.DAUtil.GetAllOwnedPokemon();
-            lvPokemon.ItemsSource = listPokemon;
-            lvPokemon.IsVisible = true;
+            List<KeyValuePair<long,ImageSource>> images = new List<KeyValuePair<long, ImageSource>>();
+            foreach (var pokemon in listPokemon)
+            {
+                images.Add(new KeyValuePair<long, ImageSource>(pokemon.Id, ImageSource.FromResource("Pokedex.Resources.pokemon.pokemon(" + pokemon.Id + ").ico")));
+            }
+
+
+            var query = from order in listPokemon
+                        join plan in images
+                             on order.Id equals plan.Key
+                        select new
+                        {
+                            order.Id,
+                            order.Name,
+                            plan.Value
+                        };
+
+            lvPokemon.ItemsSource = query;
+            
 
         }
     }
